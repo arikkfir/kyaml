@@ -1,4 +1,4 @@
-package pkg
+package kyaml
 
 import (
 	"fmt"
@@ -39,5 +39,19 @@ func (r *RNode) GetAPIGroupAndVersion() (string, string, error) {
 		return "", value, nil
 	} else {
 		return value[0:lastSlashIndex], value[lastSlashIndex+1:], nil
+	}
+}
+
+func (r *RNode) IsValid() (bool, error) {
+	if apiVersion, err := r.GetAPIVersion(); err != nil {
+		return false, fmt.Errorf("failed getting apiVersion: %w", err)
+	} else if apiVersion == "" {
+		return false, fmt.Errorf("apiVersion is missing")
+	} else if kind, err := r.GetKind(); err != nil {
+		return false, fmt.Errorf("failed getting kind: %w", err)
+	} else if kind == "" {
+		return false, fmt.Errorf("kind is missing")
+	} else {
+		return true, nil
 	}
 }
