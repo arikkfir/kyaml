@@ -9,7 +9,7 @@ import (
 
 func LabelResource(name string, value interface{}) NodeProcessor {
 	return func(ctx context.Context, n *yaml.Node) error {
-		r := &pkg.RNode{N: n}
+		r := &kyaml.RNode{N: n}
 		return r.SetLabel(name, value)
 	}
 }

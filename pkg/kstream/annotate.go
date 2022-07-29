@@ -9,7 +9,7 @@ import (
 
 func AnnotateResource(name string, value interface{}) types.NodeProcessor {
 	return func(ctx context.Context, n *yaml.Node) error {
-		r := &pkg.RNode{N: n}
+		r := &kyaml.RNode{N: n}
 		return r.SetAnnotation(name, value)
 	}
 }
