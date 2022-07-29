@@ -34,6 +34,8 @@ func GetMappingKeyValue(n *yaml.Node, key string) (interface{}, error) {
 	var value interface{}
 	if valueNode, err := GetMappingKeyNode(n, key, false); err != nil {
 		return nil, err
+	} else if valueNode == nil {
+		return nil, nil
 	} else if err := valueNode.Decode(&value); err != nil {
 		return nil, fmt.Errorf("failed to decode value node: %w", err)
 	} else {
