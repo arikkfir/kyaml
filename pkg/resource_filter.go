@@ -3,11 +3,11 @@ package kyaml
 import "fmt"
 
 type TargetingFilter struct {
-	APIVersion    string `json:"apiVersion" yaml:"apiVersion"`
-	Kind          string `json:"kind" yaml:"kind"`
-	Namespace     string `json:"namespace" yaml:"namespace"`
-	Name          string `json:"name" yaml:"name"`
-	LabelSelector string `json:"labelSelector" yaml:"labelSelector"`
+	APIVersion    string `json:"apiVersion" yaml:"apiVersion" mapstructure:"apiVersion"`
+	Kind          string `json:"kind" yaml:"kind" mapstructure:"kind"`
+	Namespace     string `json:"namespace" yaml:"namespace" mapstructure:"namespace"`
+	Name          string `json:"name" yaml:"name" mapstructure:"name"`
+	LabelSelector string `json:"labelSelector" yaml:"labelSelector" mapstructure:"labelSelector"`
 }
 
 func (r *RNode) IsMatchingFilter(includes []TargetingFilter, excludes []TargetingFilter) (bool, error) {
